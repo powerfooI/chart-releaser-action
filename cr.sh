@@ -382,7 +382,7 @@ update_index() {
     args+=(--pages-index-path "$pages_index_path")
   fi
   if [[ -n "$pr" ]]; then
-    args+=(--pr "$pr")
+    args+=(--pr)
   fi
 
   echo 'Updating charts repo index...'
