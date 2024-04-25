@@ -18,7 +18,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-DEFAULT_CHART_RELEASER_VERSION=v1.6.2
+DEFAULT_CHART_RELEASER_VERSION=v1.6.1
 
 show_help() {
   cat <<EOF
@@ -382,7 +382,7 @@ update_index() {
     args+=(--pages-index-path "$pages_index_path")
   fi
   if [[ -n "$pr" ]]; then
-    args+=(--pr "$pr")
+    args+=(--pr)
   fi
 
   echo 'Updating charts repo index...'
