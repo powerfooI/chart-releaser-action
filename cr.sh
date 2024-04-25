@@ -40,6 +40,7 @@ Usage: $(basename "$0") <options>
         --packages-with-index     Upload chart packages directly into publishing branch
         --index-path              The path to the index file
         --pages-index-path        The path to the index file in the pages branch
+        --pr                      Create a pull request for index.yaml against the GitHub Pages branch
 EOF
 }
 
@@ -59,6 +60,7 @@ main() {
   local pages_branch=
   local index_path=
   local pages_index_path=
+  local pr=
 
   parse_command_line "$@"
 
@@ -189,6 +191,12 @@ parse_command_line() {
     --pages-index-path)
       if [[ -n "${2:-}" ]]; then
         pages_index_path="$2"
+        shift
+      fi
+      ;;
+    --pr)
+      if [[ -n "${2:-}" ]]; then
+        pr="$2"
         shift
       fi
       ;;
@@ -372,6 +380,9 @@ update_index() {
   fi
   if [[ -n "$pages_index_path" ]]; then
     args+=(--pages-index-path "$pages_index_path")
+  fi
+  if [[ -n "$pr" ]]; then
+    args+=(--pr "$pr")
   fi
 
   echo 'Updating charts repo index...'

@@ -20,9 +20,9 @@ branding:
   icon: anchor
 inputs:
   version:
-    description: "The chart-releaser version to use (default: v1.6.1)"
+    description: "The chart-releaser version to use (default: v1.6.2)"
     required: false
-    default: v1.6.1
+    default: v1.6.2
   config:
     description: "The relative path to the chart-releaser config file"
     required: false
@@ -61,6 +61,9 @@ inputs:
     required: false
   index_path:
     description: "Path to index file. (default to: .cr-index/index.yaml but it is not set in the action)"
+    required: false
+  pr:
+    description: "Create a pull request for index.yaml against the GitHub Pages branch"
     required: false
 outputs:
   changed_charts:
@@ -132,6 +135,10 @@ runs:
 
         if [[ -n "${{ inputs.index_path }}" ]]; then
             args+=(--index-path "${{ inputs.index_path }}")
+        fi
+
+        if [[ -n "${{ inputs.pr }}" ]]; then
+            args+=(--pr "${{ inputs.pr }}")
         fi
 
         "$GITHUB_ACTION_PATH/cr.sh" "${args[@]}"

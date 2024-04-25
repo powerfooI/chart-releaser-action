@@ -26,6 +26,7 @@ A GitHub action to turn a GitHub project into a self-hosted Helm chart repo, usi
 - `pages_branch`: Name of the branch to be used to push the index and artifacts. (default to: gh-pages but it is not set in the action it is a default value for the chart-releaser binary)
 - `pages_index_path`: Path to the index file in the gh-pages branch. (default to: index.yaml but it is not set in the action)
 - `index_path`: Path to the index file. (default to: .cr-index/index.yaml but it is not set in the action)
+- `pr`: Create a pull request for index.yaml against the GitHub Pages branch. (default to: false but it is not set in the action)
 
 ### Outputs
 
