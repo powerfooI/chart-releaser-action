@@ -365,7 +365,7 @@ update_index() {
     return
   fi
 
-  local args=(-o "$owner" -r "$repo" --push)
+  local args=(-o "$owner" -r "$repo")
   if [[ -n "$config" ]]; then
     args+=(--config "$config")
   fi
@@ -383,6 +383,8 @@ update_index() {
   fi
   if [[ -n "$pr" ]]; then
     args+=(--pr)
+  else
+    args+=(--push)
   fi
 
   echo 'Updating charts repo index...'
